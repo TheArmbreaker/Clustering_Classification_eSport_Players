@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.10.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="9.10.001" expanded="true" height="68" name="Read data_games.CSV" width="90" x="45" y="34">
+        <parameter key="csv_file" value="/Users/markus/NoCloudDoks/Intro_DS_Local/IntroDS/eSport_Classification/data/data_games.csv"/>
+        <parameter key="column_separators" value=";"/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="false"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value="yyyy-MM-dd"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="Unnamed: 0.true.integer.attribute"/>
+          <parameter key="1" value="match_url.true.polynominal.attribute"/>
+          <parameter key="2" value="url_team1.true.polynominal.attribute"/>
+          <parameter key="3" value="url_team2.true.polynominal.attribute"/>
+          <parameter key="4" value="event_url.true.polynominal.attribute"/>
+          <parameter key="5" value="players_url_1.true.polynominal.attribute"/>
+          <parameter key="6" value="players_url_2.true.polynominal.attribute"/>
+          <parameter key="7" value="total_maps.true.integer.attribute"/>
+          <parameter key="8" value="maps_played.true.integer.attribute"/>
+          <parameter key="9" value="maps_url.true.polynominal.attribute"/>
+          <parameter key="10" value="maps_name.true.polynominal.attribute"/>
+          <parameter key="11" value="score1_maps.true.polynominal.attribute"/>
+          <parameter key="12" value="score2_maps.true.polynominal.attribute"/>
+          <parameter key="13" value="picks.true.polynominal.attribute"/>
+          <parameter key="14" value="date.true.date.attribute"/>
+          <parameter key="15" value="score1.true.integer.attribute"/>
+          <parameter key="16" value="score2.true.integer.attribute"/>
+          <parameter key="17" value="h2h_wins1.true.integer.attribute"/>
+          <parameter key="18" value="h2h_wins2.true.integer.attribute"/>
+          <parameter key="19" value="last_maps1_score_team1.true.integer.attribute"/>
+          <parameter key="20" value="last_maps1_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="21" value="last_maps2_score_team1.true.integer.attribute"/>
+          <parameter key="22" value="last_maps2_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="23" value="last_maps3_score_team1.true.integer.attribute"/>
+          <parameter key="24" value="last_maps3_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="25" value="last_maps4_score_team1.true.integer.attribute"/>
+          <parameter key="26" value="last_maps4_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="27" value="last_maps5_score_team1.true.integer.attribute"/>
+          <parameter key="28" value="last_maps5_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="29" value="last_maps6_score_team1.true.integer.attribute"/>
+          <parameter key="30" value="last_maps6_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="31" value="last_maps7_score_team1.true.integer.attribute"/>
+          <parameter key="32" value="last_maps7_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="33" value="last_maps8_score_team1.true.integer.attribute"/>
+          <parameter key="34" value="last_maps8_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="35" value="last_maps9_score_team1.true.integer.attribute"/>
+          <parameter key="36" value="last_maps9_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="37" value="last_maps10_score_team1.true.integer.attribute"/>
+          <parameter key="38" value="last_maps10_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="39" value="last_maps11_score_team1.true.integer.attribute"/>
+          <parameter key="40" value="last_maps11_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="41" value="last_maps12_score_team1.true.integer.attribute"/>
+          <parameter key="42" value="last_maps12_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="43" value="last_maps13_score_team1.true.integer.attribute"/>
+          <parameter key="44" value="last_maps13_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="45" value="last_maps14_score_team1.true.integer.attribute"/>
+          <parameter key="46" value="last_maps14_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="47" value="last_maps15_score_team1.true.integer.attribute"/>
+          <parameter key="48" value="last_maps15_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="49" value="last_maps16_score_team1.true.integer.attribute"/>
+          <parameter key="50" value="last_maps16_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="51" value="last_maps17_score_team1.true.integer.attribute"/>
+          <parameter key="52" value="last_maps17_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="53" value="last_maps18_score_team1.true.integer.attribute"/>
+          <parameter key="54" value="last_maps18_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="55" value="last_maps19_score_team1.true.integer.attribute"/>
+          <parameter key="56" value="last_maps19_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="57" value="last_maps20_score_team1.true.integer.attribute"/>
+          <parameter key="58" value="last_maps20_opponent_score_team1.true.integer.attribute"/>
+          <parameter key="59" value="last_maps1_score_team2.true.integer.attribute"/>
+          <parameter key="60" value="last_maps1_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="61" value="last_maps2_score_team2.true.integer.attribute"/>
+          <parameter key="62" value="last_maps2_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="63" value="last_maps3_score_team2.true.integer.attribute"/>
+          <parameter key="64" value="last_maps3_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="65" value="last_maps4_score_team2.true.integer.attribute"/>
+          <parameter key="66" value="last_maps4_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="67" value="last_maps5_score_team2.true.integer.attribute"/>
+          <parameter key="68" value="last_maps5_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="69" value="last_maps6_score_team2.true.integer.attribute"/>
+          <parameter key="70" value="last_maps6_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="71" value="last_maps7_score_team2.true.integer.attribute"/>
+          <parameter key="72" value="last_maps7_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="73" value="last_maps8_score_team2.true.integer.attribute"/>
+          <parameter key="74" value="last_maps8_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="75" value="last_maps9_score_team2.true.integer.attribute"/>
+          <parameter key="76" value="last_maps9_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="77" value="last_maps10_score_team2.true.integer.attribute"/>
+          <parameter key="78" value="last_maps10_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="79" value="last_maps11_score_team2.true.integer.attribute"/>
+          <parameter key="80" value="last_maps11_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="81" value="last_maps12_score_team2.true.integer.attribute"/>
+          <parameter key="82" value="last_maps12_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="83" value="last_maps13_score_team2.true.integer.attribute"/>
+          <parameter key="84" value="last_maps13_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="85" value="last_maps14_score_team2.true.integer.attribute"/>
+          <parameter key="86" value="last_maps14_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="87" value="last_maps15_score_team2.true.integer.attribute"/>
+          <parameter key="88" value="last_maps15_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="89" value="last_maps16_score_team2.true.integer.attribute"/>
+          <parameter key="90" value="last_maps16_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="91" value="last_maps17_score_team2.true.integer.attribute"/>
+          <parameter key="92" value="last_maps17_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="93" value="last_maps18_score_team2.true.integer.attribute"/>
+          <parameter key="94" value="last_maps18_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="95" value="last_maps19_score_team2.true.integer.attribute"/>
+          <parameter key="96" value="last_maps19_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="97" value="last_maps20_score_team2.true.integer.attribute"/>
+          <parameter key="98" value="last_maps20_opponent_score_team2.true.integer.attribute"/>
+          <parameter key="99" value="prize_pool.true.integer.attribute"/>
+          <parameter key="100" value="event_teams.true.real.attribute"/>
+          <parameter key="101" value="event_type.true.polynominal.attribute"/>
+          <parameter key="102" value="player1_teams_all_team1.true.integer.attribute"/>
+          <parameter key="103" value="player1_days_in_current_team1.true.integer.attribute"/>
+          <parameter key="104" value="player1_days_in_all_team1.true.integer.attribute"/>
+          <parameter key="105" value="player2_teams_all_team1.true.integer.attribute"/>
+          <parameter key="106" value="player2_days_in_current_team1.true.integer.attribute"/>
+          <parameter key="107" value="player2_days_in_all_team1.true.integer.attribute"/>
+          <parameter key="108" value="player3_teams_all_team1.true.integer.attribute"/>
+          <parameter key="109" value="player3_days_in_current_team1.true.integer.attribute"/>
+          <parameter key="110" value="player3_days_in_all_team1.true.integer.attribute"/>
+          <parameter key="111" value="player4_teams_all_team1.true.integer.attribute"/>
+          <parameter key="112" value="player4_days_in_current_team1.true.integer.attribute"/>
+          <parameter key="113" value="player4_days_in_all_team1.true.integer.attribute"/>
+          <parameter key="114" value="player5_teams_all_team1.true.integer.attribute"/>
+          <parameter key="115" value="player5_days_in_current_team1.true.integer.attribute"/>
+          <parameter key="116" value="player5_days_in_all_team1.true.integer.attribute"/>
+          <parameter key="117" value="player1_teams_all_team2.true.integer.attribute"/>
+          <parameter key="118" value="player1_days_in_current_team2.true.integer.attribute"/>
+          <parameter key="119" value="player1_days_in_all_team2.true.integer.attribute"/>
+          <parameter key="120" value="player2_teams_all_team2.true.integer.attribute"/>
+          <parameter key="121" value="player2_days_in_current_team2.true.integer.attribute"/>
+          <parameter key="122" value="player2_days_in_all_team2.true.integer.attribute"/>
+          <parameter key="123" value="player3_teams_all_team2.true.integer.attribute"/>
+          <parameter key="124" value="player3_days_in_current_team2.true.integer.attribute"/>
+          <parameter key="125" value="player3_days_in_all_team2.true.integer.attribute"/>
+          <parameter key="126" value="player4_teams_all_team2.true.integer.attribute"/>
+          <parameter key="127" value="player4_days_in_current_team2.true.integer.attribute"/>
+          <parameter key="128" value="player4_days_in_all_team2.true.integer.attribute"/>
+          <parameter key="129" value="player5_teams_all_team2.true.integer.attribute"/>
+          <parameter key="130" value="player5_days_in_current_team2.true.integer.attribute"/>
+          <parameter key="131" value="player5_days_in_all_team2.true.integer.attribute"/>
+          <parameter key="132" value="Total kills_player1_team1.true.integer.attribute"/>
+          <parameter key="133" value="Headshot %_player1_team1.true.real.attribute"/>
+          <parameter key="134" value="Total deaths_player1_team1.true.integer.attribute"/>
+          <parameter key="135" value="K/D Ratio_player1_team1.true.real.attribute"/>
+          <parameter key="136" value="Damage / Round_player1_team1.true.real.attribute"/>
+          <parameter key="137" value="Grenade dmg / Round_player1_team1.true.real.attribute"/>
+          <parameter key="138" value="Maps played_player1_team1.true.integer.attribute"/>
+          <parameter key="139" value="Rounds played_player1_team1.true.integer.attribute"/>
+          <parameter key="140" value="Kills / round_player1_team1.true.real.attribute"/>
+          <parameter key="141" value="Assists / round_player1_team1.true.real.attribute"/>
+          <parameter key="142" value="Deaths / round_player1_team1.true.real.attribute"/>
+          <parameter key="143" value="Saved by teammate / round_player1_team1.true.real.attribute"/>
+          <parameter key="144" value="Saved teammates / round_player1_team1.true.real.attribute"/>
+          <parameter key="145" value="Rating 2\.0_player1_team1.true.real.attribute"/>
+          <parameter key="146" value="vs top 5 opponents_player1_team1.true.real.attribute"/>
+          <parameter key="147" value="vs top 5 opponents_maps_player1_team1.true.integer.attribute"/>
+          <parameter key="148" value="vs top 10 opponents_player1_team1.true.real.attribute"/>
+          <parameter key="149" value="vs top 10 opponents_maps_player1_team1.true.integer.attribute"/>
+          <parameter key="150" value="vs top 20 opponents_player1_team1.true.real.attribute"/>
+          <parameter key="151" value="vs top 20 opponents_maps_player1_team1.true.integer.attribute"/>
+          <parameter key="152" value="vs top 30 opponents_player1_team1.true.real.attribute"/>
+          <parameter key="153" value="vs top 30 opponents_maps_player1_team1.true.integer.attribute"/>
+          <parameter key="154" value="vs top 50 opponents_player1_team1.true.real.attribute"/>
+          <parameter key="155" value="vs top 50 opponents_maps_player1_team1.true.integer.attribute"/>
+          <parameter key="156" value="age_player1_team1.true.integer.attribute"/>
+          <parameter key="157" value="Total kills_player2_team1.true.integer.attribute"/>
+          <parameter key="158" value="Headshot %_player2_team1.true.real.attribute"/>
+          <parameter key="159" value="Total deaths_player2_team1.true.integer.attribute"/>
+          <parameter key="160" value="K/D Ratio_player2_team1.true.real.attribute"/>
+          <parameter key="161" value="Damage / Round_player2_team1.true.real.attribute"/>
+          <parameter key="162" value="Grenade dmg / Round_player2_team1.true.real.attribute"/>
+          <parameter key="163" value="Maps played_player2_team1.true.integer.attribute"/>
+          <parameter key="164" value="Rounds played_player2_team1.true.integer.attribute"/>
+          <parameter key="165" value="Kills / round_player2_team1.true.real.attribute"/>
+          <parameter key="166" value="Assists / round_player2_team1.true.real.attribute"/>
+          <parameter key="167" value="Deaths / round_player2_team1.true.real.attribute"/>
+          <parameter key="168" value="Saved by teammate / round_player2_team1.true.real.attribute"/>
+          <parameter key="169" value="Saved teammates / round_player2_team1.true.real.attribute"/>
+          <parameter key="170" value="Rating 2\.0_player2_team1.true.real.attribute"/>
+          <parameter key="171" value="vs top 5 opponents_player2_team1.true.real.attribute"/>
+          <parameter key="172" value="vs top 5 opponents_maps_player2_team1.true.integer.attribute"/>
+          <parameter key="173" value="vs top 10 opponents_player2_team1.true.real.attribute"/>
+          <parameter key="174" value="vs top 10 opponents_maps_player2_team1.true.integer.attribute"/>
+          <parameter key="175" value="vs top 20 opponents_player2_team1.true.real.attribute"/>
+          <parameter key="176" value="vs top 20 opponents_maps_player2_team1.true.integer.attribute"/>
+          <parameter key="177" value="vs top 30 opponents_player2_team1.true.real.attribute"/>
+          <parameter key="178" value="vs top 30 opponents_maps_player2_team1.true.integer.attribute"/>
+          <parameter key="179" value="vs top 50 opponents_player2_team1.true.real.attribute"/>
+          <parameter key="180" value="vs top 50 opponents_maps_player2_team1.true.integer.attribute"/>
+          <parameter key="181" value="age_player2_team1.true.integer.attribute"/>
+          <parameter key="182" value="Total kills_player3_team1.true.integer.attribute"/>
+          <parameter key="183" value="Headshot %_player3_team1.true.real.attribute"/>
+          <parameter key="184" value="Total deaths_player3_team1.true.integer.attribute"/>
+          <parameter key="185" value="K/D Ratio_player3_team1.true.real.attribute"/>
+          <parameter key="186" value="Damage / Round_player3_team1.true.real.attribute"/>
+          <parameter key="187" value="Grenade dmg / Round_player3_team1.true.real.attribute"/>
+          <parameter key="188" value="Maps played_player3_team1.true.integer.attribute"/>
+          <parameter key="189" value="Rounds played_player3_team1.true.integer.attribute"/>
+          <parameter key="190" value="Kills / round_player3_team1.true.real.attribute"/>
+          <parameter key="191" value="Assists / round_player3_team1.true.real.attribute"/>
+          <parameter key="192" value="Deaths / round_player3_team1.true.real.attribute"/>
+          <parameter key="193" value="Saved by teammate / round_player3_team1.true.real.attribute"/>
+          <parameter key="194" value="Saved teammates / round_player3_team1.true.real.attribute"/>
+          <parameter key="195" value="Rating 2\.0_player3_team1.true.real.attribute"/>
+          <parameter key="196" value="vs top 5 opponents_player3_team1.true.real.attribute"/>
+          <parameter key="197" value="vs top 5 opponents_maps_player3_team1.true.integer.attribute"/>
+          <parameter key="198" value="vs top 10 opponents_player3_team1.true.real.attribute"/>
+          <parameter key="199" value="vs top 10 opponents_maps_player3_team1.true.integer.attribute"/>
+          <parameter key="200" value="vs top 20 opponents_player3_team1.true.real.attribute"/>
+          <parameter key="201" value="vs top 20 opponents_maps_player3_team1.true.integer.attribute"/>
+          <parameter key="202" value="vs top 30 opponents_player3_team1.true.real.attribute"/>
+          <parameter key="203" value="vs top 30 opponents_maps_player3_team1.true.integer.attribute"/>
+          <parameter key="204" value="vs top 50 opponents_player3_team1.true.real.attribute"/>
+          <parameter key="205" value="vs top 50 opponents_maps_player3_team1.true.integer.attribute"/>
+          <parameter key="206" value="age_player3_team1.true.integer.attribute"/>
+          <parameter key="207" value="Total kills_player4_team1.true.integer.attribute"/>
+          <parameter key="208" value="Headshot %_player4_team1.true.real.attribute"/>
+          <parameter key="209" value="Total deaths_player4_team1.true.integer.attribute"/>
+          <parameter key="210" value="K/D Ratio_player4_team1.true.real.attribute"/>
+          <parameter key="211" value="Damage / Round_player4_team1.true.real.attribute"/>
+          <parameter key="212" value="Grenade dmg / Round_player4_team1.true.real.attribute"/>
+          <parameter key="213" value="Maps played_player4_team1.true.integer.attribute"/>
+          <parameter key="214" value="Rounds played_player4_team1.true.integer.attribute"/>
+          <parameter key="215" value="Kills / round_player4_team1.true.real.attribute"/>
+          <parameter key="216" value="Assists / round_player4_team1.true.real.attribute"/>
+          <parameter key="217" value="Deaths / round_player4_team1.true.real.attribute"/>
+          <parameter key="218" value="Saved by teammate / round_player4_team1.true.real.attribute"/>
+          <parameter key="219" value="Saved teammates / round_player4_team1.true.real.attribute"/>
+          <parameter key="220" value="Rating 2\.0_player4_team1.true.real.attribute"/>
+          <parameter key="221" value="vs top 5 opponents_player4_team1.true.real.attribute"/>
+          <parameter key="222" value="vs top 5 opponents_maps_player4_team1.true.integer.attribute"/>
+          <parameter key="223" value="vs top 10 opponents_player4_team1.true.real.attribute"/>
+          <parameter key="224" value="vs top 10 opponents_maps_player4_team1.true.integer.attribute"/>
+          <parameter key="225" value="vs top 20 opponents_player4_team1.true.real.attribute"/>
+          <parameter key="226" value="vs top 20 opponents_maps_player4_team1.true.integer.attribute"/>
+          <parameter key="227" value="vs top 30 opponents_player4_team1.true.real.attribute"/>
+          <parameter key="228" value="vs top 30 opponents_maps_player4_team1.true.integer.attribute"/>
+          <parameter key="229" value="vs top 50 opponents_player4_team1.true.real.attribute"/>
+          <parameter key="230" value="vs top 50 opponents_maps_player4_team1.true.integer.attribute"/>
+          <parameter key="231" value="age_player4_team1.true.integer.attribute"/>
+          <parameter key="232" value="Total kills_player5_team1.true.integer.attribute"/>
+          <parameter key="233" value="Headshot %_player5_team1.true.real.attribute"/>
+          <parameter key="234" value="Total deaths_player5_team1.true.integer.attribute"/>
+          <parameter key="235" value="K/D Ratio_player5_team1.true.real.attribute"/>
+          <parameter key="236" value="Damage / Round_player5_team1.true.real.attribute"/>
+          <parameter key="237" value="Grenade dmg / Round_player5_team1.true.real.attribute"/>
+          <parameter key="238" value="Maps played_player5_team1.true.integer.attribute"/>
+          <parameter key="239" value="Rounds played_player5_team1.true.integer.attribute"/>
+          <parameter key="240" value="Kills / round_player5_team1.true.real.attribute"/>
+          <parameter key="241" value="Assists / round_player5_team1.true.real.attribute"/>
+          <parameter key="242" value="Deaths / round_player5_team1.true.real.attribute"/>
+          <parameter key="243" value="Saved by teammate / round_player5_team1.true.real.attribute"/>
+          <parameter key="244" value="Saved teammates / round_player5_team1.true.real.attribute"/>
+          <parameter key="245" value="Rating 2\.0_player5_team1.true.real.attribute"/>
+          <parameter key="246" value="vs top 5 opponents_player5_team1.true.real.attribute"/>
+          <parameter key="247" value="vs top 5 opponents_maps_player5_team1.true.integer.attribute"/>
+          <parameter key="248" value="vs top 10 opponents_player5_team1.true.real.attribute"/>
+          <parameter key="249" value="vs top 10 opponents_maps_player5_team1.true.integer.attribute"/>
+          <parameter key="250" value="vs top 20 opponents_player5_team1.true.real.attribute"/>
+          <parameter key="251" value="vs top 20 opponents_maps_player5_team1.true.integer.attribute"/>
+          <parameter key="252" value="vs top 30 opponents_player5_team1.true.real.attribute"/>
+          <parameter key="253" value="vs top 30 opponents_maps_player5_team1.true.integer.attribute"/>
+          <parameter key="254" value="vs top 50 opponents_player5_team1.true.real.attribute"/>
+          <parameter key="255" value="vs top 50 opponents_maps_player5_team1.true.integer.attribute"/>
+          <parameter key="256" value="age_player5_team1.true.integer.attribute"/>
+          <parameter key="257" value="Total kills_player1_team2.true.integer.attribute"/>
+          <parameter key="258" value="Headshot %_player1_team2.true.real.attribute"/>
+          <parameter key="259" value="Total deaths_player1_team2.true.integer.attribute"/>
+          <parameter key="260" value="K/D Ratio_player1_team2.true.real.attribute"/>
+          <parameter key="261" value="Damage / Round_player1_team2.true.real.attribute"/>
+          <parameter key="262" value="Grenade dmg / Round_player1_team2.true.real.attribute"/>
+          <parameter key="263" value="Maps played_player1_team2.true.integer.attribute"/>
+          <parameter key="264" value="Rounds played_player1_team2.true.integer.attribute"/>
+          <parameter key="265" value="Kills / round_player1_team2.true.real.attribute"/>
+          <parameter key="266" value="Assists / round_player1_team2.true.real.attribute"/>
+          <parameter key="267" value="Deaths / round_player1_team2.true.real.attribute"/>
+          <parameter key="268" value="Saved by teammate / round_player1_team2.true.real.attribute"/>
+          <parameter key="269" value="Saved teammates / round_player1_team2.true.real.attribute"/>
+          <parameter key="270" value="Rating 2\.0_player1_team2.true.real.attribute"/>
+          <parameter key="271" value="vs top 5 opponents_player1_team2.true.real.attribute"/>
+          <parameter key="272" value="vs top 5 opponents_maps_player1_team2.true.integer.attribute"/>
+          <parameter key="273" value="vs top 10 opponents_player1_team2.true.real.attribute"/>
+          <parameter key="274" value="vs top 10 opponents_maps_player1_team2.true.integer.attribute"/>
+          <parameter key="275" value="vs top 20 opponents_player1_team2.true.real.attribute"/>
+          <parameter key="276" value="vs top 20 opponents_maps_player1_team2.true.integer.attribute"/>
+          <parameter key="277" value="vs top 30 opponents_player1_team2.true.real.attribute"/>
+          <parameter key="278" value="vs top 30 opponents_maps_player1_team2.true.integer.attribute"/>
+          <parameter key="279" value="vs top 50 opponents_player1_team2.true.real.attribute"/>
+          <parameter key="280" value="vs top 50 opponents_maps_player1_team2.true.integer.attribute"/>
+          <parameter key="281" value="age_player1_team2.true.integer.attribute"/>
+          <parameter key="282" value="Total kills_player2_team2.true.integer.attribute"/>
+          <parameter key="283" value="Headshot %_player2_team2.true.real.attribute"/>
+          <parameter key="284" value="Total deaths_player2_team2.true.integer.attribute"/>
+          <parameter key="285" value="K/D Ratio_player2_team2.true.real.attribute"/>
+          <parameter key="286" value="Damage / Round_player2_team2.true.real.attribute"/>
+          <parameter key="287" value="Grenade dmg / Round_player2_team2.true.real.attribute"/>
+          <parameter key="288" value="Maps played_player2_team2.true.integer.attribute"/>
+          <parameter key="289" value="Rounds played_player2_team2.true.integer.attribute"/>
+          <parameter key="290" value="Kills / round_player2_team2.true.real.attribute"/>
+          <parameter key="291" value="Assists / round_player2_team2.true.real.attribute"/>
+          <parameter key="292" value="Deaths / round_player2_team2.true.real.attribute"/>
+          <parameter key="293" value="Saved by teammate / round_player2_team2.true.real.attribute"/>
+          <parameter key="294" value="Saved teammates / round_player2_team2.true.real.attribute"/>
+          <parameter key="295" value="Rating 2\.0_player2_team2.true.real.attribute"/>
+          <parameter key="296" value="vs top 5 opponents_player2_team2.true.real.attribute"/>
+          <parameter key="297" value="vs top 5 opponents_maps_player2_team2.true.integer.attribute"/>
+          <parameter key="298" value="vs top 10 opponents_player2_team2.true.real.attribute"/>
+          <parameter key="299" value="vs top 10 opponents_maps_player2_team2.true.integer.attribute"/>
+          <parameter key="300" value="vs top 20 opponents_player2_team2.true.real.attribute"/>
+          <parameter key="301" value="vs top 20 opponents_maps_player2_team2.true.integer.attribute"/>
+          <parameter key="302" value="vs top 30 opponents_player2_team2.true.real.attribute"/>
+          <parameter key="303" value="vs top 30 opponents_maps_player2_team2.true.integer.attribute"/>
+          <parameter key="304" value="vs top 50 opponents_player2_team2.true.real.attribute"/>
+          <parameter key="305" value="vs top 50 opponents_maps_player2_team2.true.integer.attribute"/>
+          <parameter key="306" value="age_player2_team2.true.integer.attribute"/>
+          <parameter key="307" value="Total kills_player3_team2.true.integer.attribute"/>
+          <parameter key="308" value="Headshot %_player3_team2.true.real.attribute"/>
+          <parameter key="309" value="Total deaths_player3_team2.true.integer.attribute"/>
+          <parameter key="310" value="K/D Ratio_player3_team2.true.real.attribute"/>
+          <parameter key="311" value="Damage / Round_player3_team2.true.real.attribute"/>
+          <parameter key="312" value="Grenade dmg / Round_player3_team2.true.real.attribute"/>
+          <parameter key="313" value="Maps played_player3_team2.true.integer.attribute"/>
+          <parameter key="314" value="Rounds played_player3_team2.true.integer.attribute"/>
+          <parameter key="315" value="Kills / round_player3_team2.true.real.attribute"/>
+          <parameter key="316" value="Assists / round_player3_team2.true.real.attribute"/>
+          <parameter key="317" value="Deaths / round_player3_team2.true.real.attribute"/>
+          <parameter key="318" value="Saved by teammate / round_player3_team2.true.real.attribute"/>
+          <parameter key="319" value="Saved teammates / round_player3_team2.true.real.attribute"/>
+          <parameter key="320" value="Rating 2\.0_player3_team2.true.real.attribute"/>
+          <parameter key="321" value="vs top 5 opponents_player3_team2.true.real.attribute"/>
+          <parameter key="322" value="vs top 5 opponents_maps_player3_team2.true.integer.attribute"/>
+          <parameter key="323" value="vs top 10 opponents_player3_team2.true.real.attribute"/>
+          <parameter key="324" value="vs top 10 opponents_maps_player3_team2.true.integer.attribute"/>
+          <parameter key="325" value="vs top 20 opponents_player3_team2.true.real.attribute"/>
+          <parameter key="326" value="vs top 20 opponents_maps_player3_team2.true.integer.attribute"/>
+          <parameter key="327" value="vs top 30 opponents_player3_team2.true.real.attribute"/>
+          <parameter key="328" value="vs top 30 opponents_maps_player3_team2.true.integer.attribute"/>
+          <parameter key="329" value="vs top 50 opponents_player3_team2.true.real.attribute"/>
+          <parameter key="330" value="vs top 50 opponents_maps_player3_team2.true.integer.attribute"/>
+          <parameter key="331" value="age_player3_team2.true.integer.attribute"/>
+          <parameter key="332" value="Total kills_player4_team2.true.integer.attribute"/>
+          <parameter key="333" value="Headshot %_player4_team2.true.real.attribute"/>
+          <parameter key="334" value="Total deaths_player4_team2.true.integer.attribute"/>
+          <parameter key="335" value="K/D Ratio_player4_team2.true.real.attribute"/>
+          <parameter key="336" value="Damage / Round_player4_team2.true.real.attribute"/>
+          <parameter key="337" value="Grenade dmg / Round_player4_team2.true.real.attribute"/>
+          <parameter key="338" value="Maps played_player4_team2.true.integer.attribute"/>
+          <parameter key="339" value="Rounds played_player4_team2.true.integer.attribute"/>
+          <parameter key="340" value="Kills / round_player4_team2.true.real.attribute"/>
+          <parameter key="341" value="Assists / round_player4_team2.true.real.attribute"/>
+          <parameter key="342" value="Deaths / round_player4_team2.true.real.attribute"/>
+          <parameter key="343" value="Saved by teammate / round_player4_team2.true.real.attribute"/>
+          <parameter key="344" value="Saved teammates / round_player4_team2.true.real.attribute"/>
+          <parameter key="345" value="Rating 2\.0_player4_team2.true.real.attribute"/>
+          <parameter key="346" value="vs top 5 opponents_player4_team2.true.real.attribute"/>
+          <parameter key="347" value="vs top 5 opponents_maps_player4_team2.true.integer.attribute"/>
+          <parameter key="348" value="vs top 10 opponents_player4_team2.true.real.attribute"/>
+          <parameter key="349" value="vs top 10 opponents_maps_player4_team2.true.integer.attribute"/>
+          <parameter key="350" value="vs top 20 opponents_player4_team2.true.real.attribute"/>
+          <parameter key="351" value="vs top 20 opponents_maps_player4_team2.true.integer.attribute"/>
+          <parameter key="352" value="vs top 30 opponents_player4_team2.true.real.attribute"/>
+          <parameter key="353" value="vs top 30 opponents_maps_player4_team2.true.integer.attribute"/>
+          <parameter key="354" value="vs top 50 opponents_player4_team2.true.real.attribute"/>
+          <parameter key="355" value="vs top 50 opponents_maps_player4_team2.true.integer.attribute"/>
+          <parameter key="356" value="age_player4_team2.true.integer.attribute"/>
+          <parameter key="357" value="Total kills_player5_team2.true.integer.attribute"/>
+          <parameter key="358" value="Headshot %_player5_team2.true.real.attribute"/>
+          <parameter key="359" value="Total deaths_player5_team2.true.integer.attribute"/>
+          <parameter key="360" value="K/D Ratio_player5_team2.true.real.attribute"/>
+          <parameter key="361" value="Damage / Round_player5_team2.true.real.attribute"/>
+          <parameter key="362" value="Grenade dmg / Round_player5_team2.true.real.attribute"/>
+          <parameter key="363" value="Maps played_player5_team2.true.integer.attribute"/>
+          <parameter key="364" value="Rounds played_player5_team2.true.integer.attribute"/>
+          <parameter key="365" value="Kills / round_player5_team2.true.real.attribute"/>
+          <parameter key="366" value="Assists / round_player5_team2.true.real.attribute"/>
+          <parameter key="367" value="Deaths / round_player5_team2.true.real.attribute"/>
+          <parameter key="368" value="Saved by teammate / round_player5_team2.true.real.attribute"/>
+          <parameter key="369" value="Saved teammates / round_player5_team2.true.real.attribute"/>
+          <parameter key="370" value="Rating 2\.0_player5_team2.true.real.attribute"/>
+          <parameter key="371" value="vs top 5 opponents_player5_team2.true.real.attribute"/>
+          <parameter key="372" value="vs top 5 opponents_maps_player5_team2.true.integer.attribute"/>
+          <parameter key="373" value="vs top 10 opponents_player5_team2.true.real.attribute"/>
+          <parameter key="374" value="vs top 10 opponents_maps_player5_team2.true.integer.attribute"/>
+          <parameter key="375" value="vs top 20 opponents_player5_team2.true.real.attribute"/>
+          <parameter key="376" value="vs top 20 opponents_maps_player5_team2.true.integer.attribute"/>
+          <parameter key="377" value="vs top 30 opponents_player5_team2.true.real.attribute"/>
+          <parameter key="378" value="vs top 30 opponents_maps_player5_team2.true.integer.attribute"/>
+          <parameter key="379" value="vs top 50 opponents_player5_team2.true.real.attribute"/>
+          <parameter key="380" value="vs top 50 opponents_maps_player5_team2.true.integer.attribute"/>
+          <parameter key="381" value="age_player5_team2.true.integer.attribute"/>
+          <parameter key="382" value="opponents_url_history_team1.true.polynominal.attribute"/>
+          <parameter key="383" value="opponents_url_history_team2.true.polynominal.attribute"/>
+          <parameter key="384" value="5last_match1_total_maps1.true.polynominal.attribute"/>
+          <parameter key="385" value="5last_match1_score1.true.integer.attribute"/>
+          <parameter key="386" value="5last_match1_opponent_score1.true.integer.attribute"/>
+          <parameter key="387" value="5last_match2_total_maps1.true.polynominal.attribute"/>
+          <parameter key="388" value="5last_match2_score1.true.integer.attribute"/>
+          <parameter key="389" value="5last_match2_opponent_score1.true.integer.attribute"/>
+          <parameter key="390" value="5last_match3_total_maps1.true.polynominal.attribute"/>
+          <parameter key="391" value="5last_match3_score1.true.integer.attribute"/>
+          <parameter key="392" value="5last_match3_opponent_score1.true.integer.attribute"/>
+          <parameter key="393" value="5last_match4_total_maps1.true.polynominal.attribute"/>
+          <parameter key="394" value="5last_match4_score1.true.integer.attribute"/>
+          <parameter key="395" value="5last_match4_opponent_score1.true.integer.attribute"/>
+          <parameter key="396" value="5last_match5_total_maps1.true.polynominal.attribute"/>
+          <parameter key="397" value="5last_match5_score1.true.integer.attribute"/>
+          <parameter key="398" value="5last_match5_opponent_score1.true.integer.attribute"/>
+          <parameter key="399" value="5last_match1_total_maps2.true.polynominal.attribute"/>
+          <parameter key="400" value="5last_match1_score2.true.integer.attribute"/>
+          <parameter key="401" value="5last_match1_opponent_score2.true.integer.attribute"/>
+          <parameter key="402" value="5last_match2_total_maps2.true.polynominal.attribute"/>
+          <parameter key="403" value="5last_match2_score2.true.integer.attribute"/>
+          <parameter key="404" value="5last_match2_opponent_score2.true.integer.attribute"/>
+          <parameter key="405" value="5last_match3_total_maps2.true.polynominal.attribute"/>
+          <parameter key="406" value="5last_match3_score2.true.integer.attribute"/>
+          <parameter key="407" value="5last_match3_opponent_score2.true.integer.attribute"/>
+          <parameter key="408" value="5last_match4_total_maps2.true.polynominal.attribute"/>
+          <parameter key="409" value="5last_match4_score2.true.integer.attribute"/>
+          <parameter key="410" value="5last_match4_opponent_score2.true.integer.attribute"/>
+          <parameter key="411" value="5last_match5_total_maps2.true.polynominal.attribute"/>
+          <parameter key="412" value="5last_match5_score2.true.integer.attribute"/>
+          <parameter key="413" value="5last_match5_opponent_score2.true.integer.attribute"/>
+          <parameter key="414" value="Times playedDust2_team1.true.integer.attribute"/>
+          <parameter key="415" value="Total rounds playedDust2_team1.true.integer.attribute"/>
+          <parameter key="416" value="Rounds wonDust2_team1.true.integer.attribute"/>
+          <parameter key="417" value="Win percentDust2_team1.true.real.attribute"/>
+          <parameter key="418" value="Pistol roundsDust2_team1.true.integer.attribute"/>
+          <parameter key="419" value="Pistol rounds wonDust2_team1.true.integer.attribute"/>
+          <parameter key="420" value="Pistol round win percentDust2_team1.true.real.attribute"/>
+          <parameter key="421" value="CT round win percentDust2_team1.true.real.attribute"/>
+          <parameter key="422" value="T round win percentDust2_team1.true.real.attribute"/>
+          <parameter key="423" value="Round win percent after getting first killDust2_team1.true.real.attribute"/>
+          <parameter key="424" value="Round win percent after receiving first deathDust2_team1.true.real.attribute"/>
+          <parameter key="425" value="map_played1Dust2_team1.true.integer.attribute"/>
+          <parameter key="426" value="map_played1Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="427" value="map_played2Dust2_team1.true.integer.attribute"/>
+          <parameter key="428" value="map_played2Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="429" value="map_played3Dust2_team1.true.integer.attribute"/>
+          <parameter key="430" value="map_played3Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="431" value="map_played4Dust2_team1.true.integer.attribute"/>
+          <parameter key="432" value="map_played4Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="433" value="map_played5Dust2_team1.true.integer.attribute"/>
+          <parameter key="434" value="map_played5Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="435" value="map_played6Dust2_team1.true.integer.attribute"/>
+          <parameter key="436" value="map_played6Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="437" value="map_played7Dust2_team1.true.integer.attribute"/>
+          <parameter key="438" value="map_played7Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="439" value="map_played8Dust2_team1.true.integer.attribute"/>
+          <parameter key="440" value="map_played8Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="441" value="map_played9Dust2_team1.true.integer.attribute"/>
+          <parameter key="442" value="map_played9Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="443" value="map_played10Dust2_team1.true.integer.attribute"/>
+          <parameter key="444" value="map_played10Dust2_opponent_team1.true.integer.attribute"/>
+          <parameter key="445" value="Times playedDust2_team2.true.integer.attribute"/>
+          <parameter key="446" value="Total rounds playedDust2_team2.true.integer.attribute"/>
+          <parameter key="447" value="Rounds wonDust2_team2.true.integer.attribute"/>
+          <parameter key="448" value="Win percentDust2_team2.true.real.attribute"/>
+          <parameter key="449" value="Pistol roundsDust2_team2.true.integer.attribute"/>
+          <parameter key="450" value="Pistol rounds wonDust2_team2.true.integer.attribute"/>
+          <parameter key="451" value="Pistol round win percentDust2_team2.true.real.attribute"/>
+          <parameter key="452" value="CT round win percentDust2_team2.true.real.attribute"/>
+          <parameter key="453" value="T round win percentDust2_team2.true.real.attribute"/>
+          <parameter key="454" value="Round win percent after getting first killDust2_team2.true.real.attribute"/>
+          <parameter key="455" value="Round win percent after receiving first deathDust2_team2.true.real.attribute"/>
+          <parameter key="456" value="map_played1Dust2_team2.true.integer.attribute"/>
+          <parameter key="457" value="map_played1Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="458" value="map_played2Dust2_team2.true.integer.attribute"/>
+          <parameter key="459" value="map_played2Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="460" value="map_played3Dust2_team2.true.integer.attribute"/>
+          <parameter key="461" value="map_played3Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="462" value="map_played4Dust2_team2.true.integer.attribute"/>
+          <parameter key="463" value="map_played4Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="464" value="map_played5Dust2_team2.true.integer.attribute"/>
+          <parameter key="465" value="map_played5Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="466" value="map_played6Dust2_team2.true.integer.attribute"/>
+          <parameter key="467" value="map_played6Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="468" value="map_played7Dust2_team2.true.integer.attribute"/>
+          <parameter key="469" value="map_played7Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="470" value="map_played8Dust2_team2.true.integer.attribute"/>
+          <parameter key="471" value="map_played8Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="472" value="map_played9Dust2_team2.true.integer.attribute"/>
+          <parameter key="473" value="map_played9Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="474" value="map_played10Dust2_team2.true.integer.attribute"/>
+          <parameter key="475" value="map_played10Dust2_opponent_team2.true.integer.attribute"/>
+          <parameter key="476" value="Times playedInferno_team1.true.integer.attribute"/>
+          <parameter key="477" value="Total rounds playedInferno_team1.true.integer.attribute"/>
+          <parameter key="478" value="Rounds wonInferno_team1.true.integer.attribute"/>
+          <parameter key="479" value="Win percentInferno_team1.true.real.attribute"/>
+          <parameter key="480" value="Pistol roundsInferno_team1.true.integer.attribute"/>
+          <parameter key="481" value="Pistol rounds wonInferno_team1.true.integer.attribute"/>
+          <parameter key="482" value="Pistol round win percentInferno_team1.true.real.attribute"/>
+          <parameter key="483" value="CT round win percentInferno_team1.true.real.attribute"/>
+          <parameter key="484" value="T round win percentInferno_team1.true.real.attribute"/>
+          <parameter key="485" value="Round win percent after getting first killInferno_team1.true.real.attribute"/>
+          <parameter key="486" value="Round win percent after receiving first deathInferno_team1.true.real.attribute"/>
+          <parameter key="487" value="map_played1Inferno_team1.true.integer.attribute"/>
+          <parameter key="488" value="map_played1Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="489" value="map_played2Inferno_team1.true.integer.attribute"/>
+          <parameter key="490" value="map_played2Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="491" value="map_played3Inferno_team1.true.integer.attribute"/>
+          <parameter key="492" value="map_played3Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="493" value="map_played4Inferno_team1.true.integer.attribute"/>
+          <parameter key="494" value="map_played4Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="495" value="map_played5Inferno_team1.true.integer.attribute"/>
+          <parameter key="496" value="map_played5Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="497" value="map_played6Inferno_team1.true.integer.attribute"/>
+          <parameter key="498" value="map_played6Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="499" value="map_played7Inferno_team1.true.integer.attribute"/>
+          <parameter key="500" value="map_played7Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="501" value="map_played8Inferno_team1.true.integer.attribute"/>
+          <parameter key="502" value="map_played8Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="503" value="map_played9Inferno_team1.true.integer.attribute"/>
+          <parameter key="504" value="map_played9Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="505" value="map_played10Inferno_team1.true.integer.attribute"/>
+          <parameter key="506" value="map_played10Inferno_opponent_team1.true.integer.attribute"/>
+          <parameter key="507" value="Times playedInferno_team2.true.integer.attribute"/>
+          <parameter key="508" value="Total rounds playedInferno_team2.true.integer.attribute"/>
+          <parameter key="509" value="Rounds wonInferno_team2.true.integer.attribute"/>
+          <parameter key="510" value="Win percentInferno_team2.true.real.attribute"/>
+          <parameter key="511" value="Pistol roundsInferno_team2.true.integer.attribute"/>
+          <parameter key="512" value="Pistol rounds wonInferno_team2.true.integer.attribute"/>
+          <parameter key="513" value="Pistol round win percentInferno_team2.true.real.attribute"/>
+          <parameter key="514" value="CT round win percentInferno_team2.true.real.attribute"/>
+          <parameter key="515" value="T round win percentInferno_team2.true.real.attribute"/>
+          <parameter key="516" value="Round win percent after getting first killInferno_team2.true.real.attribute"/>
+          <parameter key="517" value="Round win percent after receiving first deathInferno_team2.true.real.attribute"/>
+          <parameter key="518" value="map_played1Inferno_team2.true.integer.attribute"/>
+          <parameter key="519" value="map_played1Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="520" value="map_played2Inferno_team2.true.integer.attribute"/>
+          <parameter key="521" value="map_played2Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="522" value="map_played3Inferno_team2.true.integer.attribute"/>
+          <parameter key="523" value="map_played3Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="524" value="map_played4Inferno_team2.true.integer.attribute"/>
+          <parameter key="525" value="map_played4Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="526" value="map_played5Inferno_team2.true.integer.attribute"/>
+          <parameter key="527" value="map_played5Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="528" value="map_played6Inferno_team2.true.integer.attribute"/>
+          <parameter key="529" value="map_played6Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="530" value="map_played7Inferno_team2.true.integer.attribute"/>
+          <parameter key="531" value="map_played7Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="532" value="map_played8Inferno_team2.true.integer.attribute"/>
+          <parameter key="533" value="map_played8Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="534" value="map_played9Inferno_team2.true.integer.attribute"/>
+          <parameter key="535" value="map_played9Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="536" value="map_played10Inferno_team2.true.integer.attribute"/>
+          <parameter key="537" value="map_played10Inferno_opponent_team2.true.integer.attribute"/>
+          <parameter key="538" value="Times playedMirage_team1.true.integer.attribute"/>
+          <parameter key="539" value="Total rounds playedMirage_team1.true.integer.attribute"/>
+          <parameter key="540" value="Rounds wonMirage_team1.true.integer.attribute"/>
+          <parameter key="541" value="Win percentMirage_team1.true.real.attribute"/>
+          <parameter key="542" value="Pistol roundsMirage_team1.true.integer.attribute"/>
+          <parameter key="543" value="Pistol rounds wonMirage_team1.true.integer.attribute"/>
+          <parameter key="544" value="Pistol round win percentMirage_team1.true.real.attribute"/>
+          <parameter key="545" value="CT round win percentMirage_team1.true.real.attribute"/>
+          <parameter key="546" value="T round win percentMirage_team1.true.real.attribute"/>
+          <parameter key="547" value="Round win percent after getting first killMirage_team1.true.real.attribute"/>
+          <parameter key="548" value="Round win percent after receiving first deathMirage_team1.true.real.attribute"/>
+          <parameter key="549" value="map_played1Mirage_team1.true.integer.attribute"/>
+          <parameter key="550" value="map_played1Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="551" value="map_played2Mirage_team1.true.integer.attribute"/>
+          <parameter key="552" value="map_played2Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="553" value="map_played3Mirage_team1.true.integer.attribute"/>
+          <parameter key="554" value="map_played3Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="555" value="map_played4Mirage_team1.true.integer.attribute"/>
+          <parameter key="556" value="map_played4Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="557" value="map_played5Mirage_team1.true.integer.attribute"/>
+          <parameter key="558" value="map_played5Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="559" value="map_played6Mirage_team1.true.integer.attribute"/>
+          <parameter key="560" value="map_played6Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="561" value="map_played7Mirage_team1.true.integer.attribute"/>
+          <parameter key="562" value="map_played7Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="563" value="map_played8Mirage_team1.true.integer.attribute"/>
+          <parameter key="564" value="map_played8Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="565" value="map_played9Mirage_team1.true.integer.attribute"/>
+          <parameter key="566" value="map_played9Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="567" value="map_played10Mirage_team1.true.integer.attribute"/>
+          <parameter key="568" value="map_played10Mirage_opponent_team1.true.integer.attribute"/>
+          <parameter key="569" value="Times playedMirage_team2.true.integer.attribute"/>
+          <parameter key="570" value="Total rounds playedMirage_team2.true.integer.attribute"/>
+          <parameter key="571" value="Rounds wonMirage_team2.true.integer.attribute"/>
+          <parameter key="572" value="Win percentMirage_team2.true.real.attribute"/>
+          <parameter key="573" value="Pistol roundsMirage_team2.true.integer.attribute"/>
+          <parameter key="574" value="Pistol rounds wonMirage_team2.true.integer.attribute"/>
+          <parameter key="575" value="Pistol round win percentMirage_team2.true.real.attribute"/>
+          <parameter key="576" value="CT round win percentMirage_team2.true.real.attribute"/>
+          <parameter key="577" value="T round win percentMirage_team2.true.real.attribute"/>
+          <parameter key="578" value="Round win percent after getting first killMirage_team2.true.real.attribute"/>
+          <parameter key="579" value="Round win percent after receiving first deathMirage_team2.true.real.attribute"/>
+          <parameter key="580" value="map_played1Mirage_team2.true.integer.attribute"/>
+          <parameter key="581" value="map_played1Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="582" value="map_played2Mirage_team2.true.integer.attribute"/>
+          <parameter key="583" value="map_played2Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="584" value="map_played3Mirage_team2.true.integer.attribute"/>
+          <parameter key="585" value="map_played3Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="586" value="map_played4Mirage_team2.true.integer.attribute"/>
+          <parameter key="587" value="map_played4Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="588" value="map_played5Mirage_team2.true.integer.attribute"/>
+          <parameter key="589" value="map_played5Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="590" value="map_played6Mirage_team2.true.integer.attribute"/>
+          <parameter key="591" value="map_played6Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="592" value="map_played7Mirage_team2.true.integer.attribute"/>
+          <parameter key="593" value="map_played7Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="594" value="map_played8Mirage_team2.true.integer.attribute"/>
+          <parameter key="595" value="map_played8Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="596" value="map_played9Mirage_team2.true.integer.attribute"/>
+          <parameter key="597" value="map_played9Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="598" value="map_played10Mirage_team2.true.integer.attribute"/>
+          <parameter key="599" value="map_played10Mirage_opponent_team2.true.integer.attribute"/>
+          <parameter key="600" value="Times playedNuke_team1.true.integer.attribute"/>
+          <parameter key="601" value="Total rounds playedNuke_team1.true.integer.attribute"/>
+          <parameter key="602" value="Rounds wonNuke_team1.true.integer.attribute"/>
+          <parameter key="603" value="Win percentNuke_team1.true.real.attribute"/>
+          <parameter key="604" value="Pistol roundsNuke_team1.true.integer.attribute"/>
+          <parameter key="605" value="Pistol rounds wonNuke_team1.true.integer.attribute"/>
+          <parameter key="606" value="Pistol round win percentNuke_team1.true.real.attribute"/>
+          <parameter key="607" value="CT round win percentNuke_team1.true.real.attribute"/>
+          <parameter key="608" value="T round win percentNuke_team1.true.real.attribute"/>
+          <parameter key="609" value="Round win percent after getting first killNuke_team1.true.real.attribute"/>
+          <parameter key="610" value="Round win percent after receiving first deathNuke_team1.true.real.attribute"/>
+          <parameter key="611" value="map_played1Nuke_team1.true.integer.attribute"/>
+          <parameter key="612" value="map_played1Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="613" value="map_played2Nuke_team1.true.integer.attribute"/>
+          <parameter key="614" value="map_played2Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="615" value="map_played3Nuke_team1.true.integer.attribute"/>
+          <parameter key="616" value="map_played3Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="617" value="map_played4Nuke_team1.true.integer.attribute"/>
+          <parameter key="618" value="map_played4Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="619" value="map_played5Nuke_team1.true.integer.attribute"/>
+          <parameter key="620" value="map_played5Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="621" value="map_played6Nuke_team1.true.integer.attribute"/>
+          <parameter key="622" value="map_played6Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="623" value="map_played7Nuke_team1.true.integer.attribute"/>
+          <parameter key="624" value="map_played7Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="625" value="map_played8Nuke_team1.true.integer.attribute"/>
+          <parameter key="626" value="map_played8Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="627" value="map_played9Nuke_team1.true.integer.attribute"/>
+          <parameter key="628" value="map_played9Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="629" value="map_played10Nuke_team1.true.integer.attribute"/>
+          <parameter key="630" value="map_played10Nuke_opponent_team1.true.integer.attribute"/>
+          <parameter key="631" value="Times playedNuke_team2.true.integer.attribute"/>
+          <parameter key="632" value="Total rounds playedNuke_team2.true.integer.attribute"/>
+          <parameter key="633" value="Rounds wonNuke_team2.true.integer.attribute"/>
+          <parameter key="634" value="Win percentNuke_team2.true.real.attribute"/>
+          <parameter key="635" value="Pistol roundsNuke_team2.true.integer.attribute"/>
+          <parameter key="636" value="Pistol rounds wonNuke_team2.true.integer.attribute"/>
+          <parameter key="637" value="Pistol round win percentNuke_team2.true.real.attribute"/>
+          <parameter key="638" value="CT round win percentNuke_team2.true.real.attribute"/>
+          <parameter key="639" value="T round win percentNuke_team2.true.real.attribute"/>
+          <parameter key="640" value="Round win percent after getting first killNuke_team2.true.real.attribute"/>
+          <parameter key="641" value="Round win percent after receiving first deathNuke_team2.true.real.attribute"/>
+          <parameter key="642" value="map_played1Nuke_team2.true.integer.attribute"/>
+          <parameter key="643" value="map_played1Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="644" value="map_played2Nuke_team2.true.integer.attribute"/>
+          <parameter key="645" value="map_played2Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="646" value="map_played3Nuke_team2.true.integer.attribute"/>
+          <parameter key="647" value="map_played3Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="648" value="map_played4Nuke_team2.true.integer.attribute"/>
+          <parameter key="649" value="map_played4Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="650" value="map_played5Nuke_team2.true.integer.attribute"/>
+          <parameter key="651" value="map_played5Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="652" value="map_played6Nuke_team2.true.integer.attribute"/>
+          <parameter key="653" value="map_played6Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="654" value="map_played7Nuke_team2.true.integer.attribute"/>
+          <parameter key="655" value="map_played7Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="656" value="map_played8Nuke_team2.true.integer.attribute"/>
+          <parameter key="657" value="map_played8Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="658" value="map_played9Nuke_team2.true.integer.attribute"/>
+          <parameter key="659" value="map_played9Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="660" value="map_played10Nuke_team2.true.integer.attribute"/>
+          <parameter key="661" value="map_played10Nuke_opponent_team2.true.integer.attribute"/>
+          <parameter key="662" value="Times playedOverpass_team1.true.integer.attribute"/>
+          <parameter key="663" value="Total rounds playedOverpass_team1.true.integer.attribute"/>
+          <parameter key="664" value="Rounds wonOverpass_team1.true.integer.attribute"/>
+          <parameter key="665" value="Win percentOverpass_team1.true.real.attribute"/>
+          <parameter key="666" value="Pistol roundsOverpass_team1.true.integer.attribute"/>
+          <parameter key="667" value="Pistol rounds wonOverpass_team1.true.integer.attribute"/>
+          <parameter key="668" value="Pistol round win percentOverpass_team1.true.real.attribute"/>
+          <parameter key="669" value="CT round win percentOverpass_team1.true.real.attribute"/>
+          <parameter key="670" value="T round win percentOverpass_team1.true.real.attribute"/>
+          <parameter key="671" value="Round win percent after getting first killOverpass_team1.true.real.attribute"/>
+          <parameter key="672" value="Round win percent after receiving first deathOverpass_team1.true.real.attribute"/>
+          <parameter key="673" value="map_played1Overpass_team1.true.integer.attribute"/>
+          <parameter key="674" value="map_played1Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="675" value="map_played2Overpass_team1.true.integer.attribute"/>
+          <parameter key="676" value="map_played2Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="677" value="map_played3Overpass_team1.true.integer.attribute"/>
+          <parameter key="678" value="map_played3Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="679" value="map_played4Overpass_team1.true.integer.attribute"/>
+          <parameter key="680" value="map_played4Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="681" value="map_played5Overpass_team1.true.integer.attribute"/>
+          <parameter key="682" value="map_played5Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="683" value="map_played6Overpass_team1.true.integer.attribute"/>
+          <parameter key="684" value="map_played6Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="685" value="map_played7Overpass_team1.true.integer.attribute"/>
+          <parameter key="686" value="map_played7Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="687" value="map_played8Overpass_team1.true.integer.attribute"/>
+          <parameter key="688" value="map_played8Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="689" value="map_played9Overpass_team1.true.integer.attribute"/>
+          <parameter key="690" value="map_played9Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="691" value="map_played10Overpass_team1.true.integer.attribute"/>
+          <parameter key="692" value="map_played10Overpass_opponent_team1.true.integer.attribute"/>
+          <parameter key="693" value="Times playedOverpass_team2.true.integer.attribute"/>
+          <parameter key="694" value="Total rounds playedOverpass_team2.true.integer.attribute"/>
+          <parameter key="695" value="Rounds wonOverpass_team2.true.integer.attribute"/>
+          <parameter key="696" value="Win percentOverpass_team2.true.real.attribute"/>
+          <parameter key="697" value="Pistol roundsOverpass_team2.true.integer.attribute"/>
+          <parameter key="698" value="Pistol rounds wonOverpass_team2.true.integer.attribute"/>
+          <parameter key="699" value="Pistol round win percentOverpass_team2.true.real.attribute"/>
+          <parameter key="700" value="CT round win percentOverpass_team2.true.real.attribute"/>
+          <parameter key="701" value="T round win percentOverpass_team2.true.real.attribute"/>
+          <parameter key="702" value="Round win percent after getting first killOverpass_team2.true.real.attribute"/>
+          <parameter key="703" value="Round win percent after receiving first deathOverpass_team2.true.real.attribute"/>
+          <parameter key="704" value="map_played1Overpass_team2.true.integer.attribute"/>
+          <parameter key="705" value="map_played1Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="706" value="map_played2Overpass_team2.true.integer.attribute"/>
+          <parameter key="707" value="map_played2Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="708" value="map_played3Overpass_team2.true.integer.attribute"/>
+          <parameter key="709" value="map_played3Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="710" value="map_played4Overpass_team2.true.integer.attribute"/>
+          <parameter key="711" value="map_played4Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="712" value="map_played5Overpass_team2.true.integer.attribute"/>
+          <parameter key="713" value="map_played5Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="714" value="map_played6Overpass_team2.true.integer.attribute"/>
+          <parameter key="715" value="map_played6Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="716" value="map_played7Overpass_team2.true.integer.attribute"/>
+          <parameter key="717" value="map_played7Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="718" value="map_played8Overpass_team2.true.integer.attribute"/>
+          <parameter key="719" value="map_played8Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="720" value="map_played9Overpass_team2.true.integer.attribute"/>
+          <parameter key="721" value="map_played9Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="722" value="map_played10Overpass_team2.true.integer.attribute"/>
+          <parameter key="723" value="map_played10Overpass_opponent_team2.true.integer.attribute"/>
+          <parameter key="724" value="Times playedTrain_team1.true.integer.attribute"/>
+          <parameter key="725" value="Total rounds playedTrain_team1.true.integer.attribute"/>
+          <parameter key="726" value="Rounds wonTrain_team1.true.integer.attribute"/>
+          <parameter key="727" value="Win percentTrain_team1.true.real.attribute"/>
+          <parameter key="728" value="Pistol roundsTrain_team1.true.integer.attribute"/>
+          <parameter key="729" value="Pistol rounds wonTrain_team1.true.integer.attribute"/>
+          <parameter key="730" value="Pistol round win percentTrain_team1.true.real.attribute"/>
+          <parameter key="731" value="CT round win percentTrain_team1.true.real.attribute"/>
+          <parameter key="732" value="T round win percentTrain_team1.true.real.attribute"/>
+          <parameter key="733" value="Round win percent after getting first killTrain_team1.true.real.attribute"/>
+          <parameter key="734" value="Round win percent after receiving first deathTrain_team1.true.real.attribute"/>
+          <parameter key="735" value="map_played1Train_team1.true.integer.attribute"/>
+          <parameter key="736" value="map_played1Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="737" value="map_played2Train_team1.true.integer.attribute"/>
+          <parameter key="738" value="map_played2Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="739" value="map_played3Train_team1.true.integer.attribute"/>
+          <parameter key="740" value="map_played3Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="741" value="map_played4Train_team1.true.integer.attribute"/>
+          <parameter key="742" value="map_played4Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="743" value="map_played5Train_team1.true.integer.attribute"/>
+          <parameter key="744" value="map_played5Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="745" value="map_played6Train_team1.true.integer.attribute"/>
+          <parameter key="746" value="map_played6Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="747" value="map_played7Train_team1.true.integer.attribute"/>
+          <parameter key="748" value="map_played7Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="749" value="map_played8Train_team1.true.integer.attribute"/>
+          <parameter key="750" value="map_played8Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="751" value="map_played9Train_team1.true.integer.attribute"/>
+          <parameter key="752" value="map_played9Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="753" value="map_played10Train_team1.true.integer.attribute"/>
+          <parameter key="754" value="map_played10Train_opponent_team1.true.integer.attribute"/>
+          <parameter key="755" value="Times playedTrain_team2.true.integer.attribute"/>
+          <parameter key="756" value="Total rounds playedTrain_team2.true.integer.attribute"/>
+          <parameter key="757" value="Rounds wonTrain_team2.true.integer.attribute"/>
+          <parameter key="758" value="Win percentTrain_team2.true.real.attribute"/>
+          <parameter key="759" value="Pistol roundsTrain_team2.true.integer.attribute"/>
+          <parameter key="760" value="Pistol rounds wonTrain_team2.true.integer.attribute"/>
+          <parameter key="761" value="Pistol round win percentTrain_team2.true.real.attribute"/>
+          <parameter key="762" value="CT round win percentTrain_team2.true.real.attribute"/>
+          <parameter key="763" value="T round win percentTrain_team2.true.real.attribute"/>
+          <parameter key="764" value="Round win percent after getting first killTrain_team2.true.real.attribute"/>
+          <parameter key="765" value="Round win percent after receiving first deathTrain_team2.true.real.attribute"/>
+          <parameter key="766" value="map_played1Train_team2.true.integer.attribute"/>
+          <parameter key="767" value="map_played1Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="768" value="map_played2Train_team2.true.integer.attribute"/>
+          <parameter key="769" value="map_played2Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="770" value="map_played3Train_team2.true.integer.attribute"/>
+          <parameter key="771" value="map_played3Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="772" value="map_played4Train_team2.true.integer.attribute"/>
+          <parameter key="773" value="map_played4Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="774" value="map_played5Train_team2.true.integer.attribute"/>
+          <parameter key="775" value="map_played5Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="776" value="map_played6Train_team2.true.integer.attribute"/>
+          <parameter key="777" value="map_played6Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="778" value="map_played7Train_team2.true.integer.attribute"/>
+          <parameter key="779" value="map_played7Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="780" value="map_played8Train_team2.true.integer.attribute"/>
+          <parameter key="781" value="map_played8Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="782" value="map_played9Train_team2.true.integer.attribute"/>
+          <parameter key="783" value="map_played9Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="784" value="map_played10Train_team2.true.integer.attribute"/>
+          <parameter key="785" value="map_played10Train_opponent_team2.true.integer.attribute"/>
+          <parameter key="786" value="Times playedVertigo_team1.true.integer.attribute"/>
+          <parameter key="787" value="Total rounds playedVertigo_team1.true.integer.attribute"/>
+          <parameter key="788" value="Rounds wonVertigo_team1.true.integer.attribute"/>
+          <parameter key="789" value="Win percentVertigo_team1.true.real.attribute"/>
+          <parameter key="790" value="Pistol roundsVertigo_team1.true.integer.attribute"/>
+          <parameter key="791" value="Pistol rounds wonVertigo_team1.true.integer.attribute"/>
+          <parameter key="792" value="Pistol round win percentVertigo_team1.true.real.attribute"/>
+          <parameter key="793" value="CT round win percentVertigo_team1.true.real.attribute"/>
+          <parameter key="794" value="T round win percentVertigo_team1.true.real.attribute"/>
+          <parameter key="795" value="Round win percent after getting first killVertigo_team1.true.real.attribute"/>
+          <parameter key="796" value="Round win percent after receiving first deathVertigo_team1.true.real.attribute"/>
+          <parameter key="797" value="map_played1Vertigo_team1.true.integer.attribute"/>
+          <parameter key="798" value="map_played1Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="799" value="map_played2Vertigo_team1.true.integer.attribute"/>
+          <parameter key="800" value="map_played2Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="801" value="map_played3Vertigo_team1.true.integer.attribute"/>
+          <parameter key="802" value="map_played3Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="803" value="map_played4Vertigo_team1.true.integer.attribute"/>
+          <parameter key="804" value="map_played4Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="805" value="map_played5Vertigo_team1.true.integer.attribute"/>
+          <parameter key="806" value="map_played5Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="807" value="map_played6Vertigo_team1.true.integer.attribute"/>
+          <parameter key="808" value="map_played6Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="809" value="map_played7Vertigo_team1.true.integer.attribute"/>
+          <parameter key="810" value="map_played7Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="811" value="map_played8Vertigo_team1.true.integer.attribute"/>
+          <parameter key="812" value="map_played8Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="813" value="map_played9Vertigo_team1.true.integer.attribute"/>
+          <parameter key="814" value="map_played9Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="815" value="map_played10Vertigo_team1.true.integer.attribute"/>
+          <parameter key="816" value="map_played10Vertigo_opponent_team1.true.integer.attribute"/>
+          <parameter key="817" value="Times playedVertigo_team2.true.integer.attribute"/>
+          <parameter key="818" value="Total rounds playedVertigo_team2.true.integer.attribute"/>
+          <parameter key="819" value="Rounds wonVertigo_team2.true.integer.attribute"/>
+          <parameter key="820" value="Win percentVertigo_team2.true.real.attribute"/>
+          <parameter key="821" value="Pistol roundsVertigo_team2.true.integer.attribute"/>
+          <parameter key="822" value="Pistol rounds wonVertigo_team2.true.integer.attribute"/>
+          <parameter key="823" value="Pistol round win percentVertigo_team2.true.real.attribute"/>
+          <parameter key="824" value="CT round win percentVertigo_team2.true.real.attribute"/>
+          <parameter key="825" value="T round win percentVertigo_team2.true.real.attribute"/>
+          <parameter key="826" value="Round win percent after getting first killVertigo_team2.true.real.attribute"/>
+          <parameter key="827" value="Round win percent after receiving first deathVertigo_team2.true.real.attribute"/>
+          <parameter key="828" value="map_played1Vertigo_team2.true.integer.attribute"/>
+          <parameter key="829" value="map_played1Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="830" value="map_played2Vertigo_team2.true.integer.attribute"/>
+          <parameter key="831" value="map_played2Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="832" value="map_played3Vertigo_team2.true.integer.attribute"/>
+          <parameter key="833" value="map_played3Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="834" value="map_played4Vertigo_team2.true.integer.attribute"/>
+          <parameter key="835" value="map_played4Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="836" value="map_played5Vertigo_team2.true.integer.attribute"/>
+          <parameter key="837" value="map_played5Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="838" value="map_played6Vertigo_team2.true.integer.attribute"/>
+          <parameter key="839" value="map_played6Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="840" value="map_played7Vertigo_team2.true.integer.attribute"/>
+          <parameter key="841" value="map_played7Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="842" value="map_played8Vertigo_team2.true.integer.attribute"/>
+          <parameter key="843" value="map_played8Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="844" value="map_played9Vertigo_team2.true.integer.attribute"/>
+          <parameter key="845" value="map_played9Vertigo_opponent_team2.true.integer.attribute"/>
+          <parameter key="846" value="map_played10Vertigo_team2.true.integer.attribute"/>
+          <parameter key="847" value="map_played10Vertigo_opponent_team2.true.integer.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Select Attributes for PythonScript" width="90" x="246" y="34">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="Rating 2.0_player1_team2|Rating 2.0_player1_team1|Rating 2.0_player2_team1|Rating 2.0_player3_team2|Rating 2.0_player3_team1|Rating 2.0_player4_team1|Rating 2.0_player5_team1|Rating 2.0_player5_team2|Rating 2.0_player2_team2|Rating 2.0_player4_team2|players_url_1|players_url_2|age_player1_team1|age_player1_team2|age_player2_team1|age_player2_team2|age_player3_team1|age_player3_team2|age_player4_team1|age_player4_team2|age_player5_team1|age_player5_team2|player1_days_in_all_team1|player1_days_in_all_team2|player1_days_in_current_team1|player1_days_in_current_team2|player2_days_in_all_team1|player2_days_in_all_team2|player2_days_in_current_team1|player2_days_in_current_team2|player3_days_in_all_team1|player3_days_in_all_team2|player3_days_in_current_team1|player3_days_in_current_team2|player4_days_in_all_team1|player4_days_in_all_team2|player4_days_in_current_team1|player4_days_in_current_team2|player5_days_in_all_team1|player5_days_in_all_team2|player5_days_in_current_team1|player5_days_in_current_team2"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="python_scripting:execute_python" compatibility="9.10.001" expanded="true" height="103" name="Retrieve Data for new Dataset" width="90" x="447" y="34">
+        <parameter key="script" value="import pandas as pd&#10;&#10;# rm_main is a mandatory function, &#10;# the number of arguments has to be the number of input ports (can be none),&#10;#     or the number of input ports plus one if &quot;use macros&quot; parameter is set&#10;# if you want to use macros, use this instead and check &quot;use macros&quot; parameter:&#10;#def rm_main(data,macros):&#10;def rm_main(data):&#10;    print('Hello, world!')&#10;    # output can be found in Log View&#10;    print(type(data))&#10;&#10;    #your code goes here&#10;&#10;    #for example:&#10;    df1 = data[['players_url_1','players_url_2']]&#10;&#10;    mydict = {'id':[], 'name':[]}&#10;    errorList = []&#10;&#10;    for i in range(len(df1.players_url_1)-1):&#10;    &#9;&#9;seperator = df1.players_url_1[i][1]&#10;    &#9;&#9;spliter = df1.players_url_1[i][2]&#10;&#10;    &#9;&#9;if seperator == &quot;\'&quot; or seperator == &quot;\&quot;&quot; and spliter == &quot;/&quot;:&#10;        &#9;&#9;text = df1.players_url_1[i]&#10;        &#9;&#9;start = text.index(seperator)&#10;        &#9;&#9;end = text.index(seperator,start+1)&#10;&#10;        &#9;&#9;substring = text[start+1:end]&#10;        &#10;        &#9;&#9;x = substring.split('/')&#10;        &#9;&#9;mydict['id']+=[x[-2]]&#10;        &#9;&#9;mydict['name']+=[x[-1]]&#10;&#10;    for i in range(len(df1.players_url_2)-1):&#10;    &#9;&#9;seperator = df1.players_url_2[i][1]&#10;    &#9;&#9;spliter = df1.players_url_2[i][2]&#10;&#10;    &#9;&#9;if seperator == &quot;\'&quot; or seperator == &quot;\&quot;&quot; and spliter == &quot;/&quot;:&#10;        &#9;&#9;text = df1.players_url_2[i]&#10;        &#9;&#9;start = text.index(seperator)&#10;        &#9;&#9;end = text.index(seperator,start+1)&#10;        &#9;&#9;substring = text[start+1:end]&#10;        &#9;&#9;x = substring.split('/')&#10;        &#9;&#9;mydict['id']+=[x[-2]]&#10;        &#9;&#9;mydict['name']+=[x[-1]]&#10;        &#9;&#9;#if len(x) == 4:&#10;            &#9;&#10;    &#10;    players = pd.DataFrame(mydict)&#10;    players.drop_duplicates(inplace=True)     &#10;    # connect 2 output ports to see the results&#10;    &#10;    return players"/>
+        <parameter key="script_file" value="/Users/markus/NoCloudDoks/Intro_DS_Local/IntroDS/IntroDS_Project/esport_players.py"/>
+        <parameter key="notebook_cell_tag_filter" value=""/>
+        <parameter key="use_default_python" value="true"/>
+        <parameter key="package_manager" value="conda (anaconda)"/>
+        <parameter key="use_macros" value="false"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Remove Rating 2.0" width="90" x="648" y="34">
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="rating"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="true"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="aggregate" compatibility="9.10.001" expanded="true" height="82" name="Feature Engineering Age / Team Experience" width="90" x="849" y="34">
+        <parameter key="use_default_aggregation" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default_aggregation_function" value="average"/>
+        <list key="aggregation_attributes">
+          <parameter key="age" value="maximum"/>
+          <parameter key="team_duration" value="maximum"/>
+        </list>
+        <parameter key="group_by_attributes" value="id|name"/>
+        <parameter key="count_all_combinations" value="false"/>
+        <parameter key="only_distinct" value="false"/>
+        <parameter key="ignore_missings" value="true"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="9.10.001" expanded="true" height="103" name="Remove Examples with Age &lt; 13" width="90" x="983" y="34">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="true"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="maximum(age).lt.13"/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="blending:rename" compatibility="9.10.001" expanded="true" height="82" name="Rename Attributes" width="90" x="1117" y="34">
+        <list key="rename attributes">
+          <parameter key="maximum(age)" value="Age"/>
+          <parameter key="maximum(team_duration)" value="Team_Experience"/>
+        </list>
+        <parameter key="from_attribute" value=""/>
+        <parameter key="to_attribute" value=""/>
+      </operator>
+      <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store new Dataset" width="90" x="1251" y="34">
+        <parameter key="repository_entry" value="../data/Dataset_Age_and_Experience"/>
+      </operator>
+      <connect from_op="Read data_games.CSV" from_port="output" to_op="Select Attributes for PythonScript" to_port="example set input"/>
+      <connect from_op="Select Attributes for PythonScript" from_port="example set output" to_op="Retrieve Data for new Dataset" to_port="input 1"/>
+      <connect from_op="Retrieve Data for new Dataset" from_port="output 1" to_op="Remove Rating 2.0" to_port="example set input"/>
+      <connect from_op="Remove Rating 2.0" from_port="example set output" to_op="Feature Engineering Age / Team Experience" to_port="example set input"/>
+      <connect from_op="Feature Engineering Age / Team Experience" from_port="example set output" to_op="Remove Examples with Age &lt; 13" to_port="example set input"/>
+      <connect from_op="Feature Engineering Age / Team Experience" from_port="original" to_port="result 2"/>
+      <connect from_op="Remove Examples with Age &lt; 13" from_port="example set output" to_op="Rename Attributes" to_port="example set input"/>
+      <connect from_op="Remove Examples with Age &lt; 13" from_port="original" to_port="result 3"/>
+      <connect from_op="Rename Attributes" from_port="example set output" to_op="Store new Dataset" to_port="input"/>
+      <connect from_op="Store new Dataset" from_port="through" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <description align="left" color="purple" colored="true" height="158" resized="true" width="201" x="587" y="139">Rating 2.0 was needed for first Use Case. In Use Case No 2 this will come from another Dataset.&lt;br&gt;Gets removed to save working time on Python scripting.</description>
+      <description align="left" color="purple" colored="true" height="112" resized="true" width="158" x="815" y="146">Retrieving the max Age (measured in years) and max TeamExperience (measured in days).&lt;br&gt;</description>
+    </process>
+  </operator>
+</process>

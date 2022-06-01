@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.10.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve Performance Set" width="90" x="112" y="34">
+        <parameter key="repository_entry" value="../data/Dataset_Performance"/>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve Age and Experience Set" width="90" x="112" y="136">
+        <parameter key="repository_entry" value="../data/Dataset_Age_and_Experience"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="9.10.001" expanded="true" height="82" name="Join" width="90" x="246" y="85">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="player_id" value="id"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="select_attributes" compatibility="9.10.001" expanded="true" height="82" name="Drop 2nd name Attribute" width="90" x="380" y="85">
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="name"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="true"/>
+        <parameter key="include_special_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="124" name="Multiply" width="90" x="514" y="85"/>
+      <operator activated="true" class="concurrency:correlation_matrix" compatibility="9.10.001" expanded="true" height="103" name="Correlation Overall" width="90" x="648" y="391">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="adr|Age|assists|deaths|fkdiff|hs|hs_rate|kast|kddiff|kills|performance_ct|performance_t|Team_Experience"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="normalize_weights" value="true"/>
+        <parameter key="squared_correlation" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:correlation_matrix" compatibility="9.10.001" expanded="true" height="103" name="Correlation CT_T" width="90" x="648" y="238">
+        <parameter key="attribute_filter_type" value="subset"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value="adr_ct|adr_t|deaths_ct|deaths_t|kast_ct|kast_t|Age|assists|deaths|fkdiff|hs|hs_rate|kddiff_ct|kddiff_t|kills_ct|kills_t|performance_ct|performance_t|Team_Experience"/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="normalize_weights" value="true"/>
+        <parameter key="squared_correlation" value="false"/>
+      </operator>
+      <operator activated="true" class="store" compatibility="9.10.001" expanded="true" height="68" name="Store" width="90" x="648" y="34">
+        <parameter key="repository_entry" value="../data/eSport_Data_preped"/>
+      </operator>
+      <connect from_op="Retrieve Performance Set" from_port="output" to_op="Join" to_port="left"/>
+      <connect from_op="Retrieve Age and Experience Set" from_port="output" to_op="Join" to_port="right"/>
+      <connect from_op="Join" from_port="join" to_op="Drop 2nd name Attribute" to_port="example set input"/>
+      <connect from_op="Drop 2nd name Attribute" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Store" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Correlation CT_T" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 3" to_op="Correlation Overall" to_port="example set"/>
+      <connect from_op="Correlation Overall" from_port="matrix" to_port="result 3"/>
+      <connect from_op="Correlation CT_T" from_port="matrix" to_port="result 2"/>
+      <connect from_op="Store" from_port="through" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <description align="left" color="green" colored="true" height="66" resized="true" width="167" x="435" y="319">Generate different Correlations for Use Case sensitive view point.</description>
+    </process>
+  </operator>
+</process>

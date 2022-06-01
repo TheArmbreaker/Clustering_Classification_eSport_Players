@@ -1,0 +1,986 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.10.001">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.10.001" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="9.10.001" expanded="true" height="68" name="Retrieve Joined Data" width="90" x="45" y="85">
+        <parameter key="repository_entry" value="../data/eSport_Input_for_Classification"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="9.10.001" expanded="true" height="103" name="Filter for missing values" width="90" x="179" y="85">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="false"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="assists.is_not_missing."/>
+          <parameter key="filters_entry_key" value="fkdiff.is_not_missing."/>
+          <parameter key="filters_entry_key" value="hs_rate.is_not_missing."/>
+          <parameter key="filters_entry_key" value="Team_Experience.is_not_missing."/>
+          <parameter key="filters_entry_key" value="id.is_not_missing."/>
+          <parameter key="filters_entry_key" value="interesting_player.is_not_missing."/>
+        </list>
+        <parameter key="filters_logic_and" value="true"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="set_role" compatibility="9.10.001" expanded="true" height="82" name="Set Role" width="90" x="380" y="85">
+        <parameter key="attribute_name" value="interesting_player"/>
+        <parameter key="target_role" value="label"/>
+        <list key="set_additional_roles"/>
+      </operator>
+      <operator activated="true" class="normalize" compatibility="9.10.001" expanded="true" height="103" name="Normalize" width="90" x="581" y="85">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="numeric"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="real"/>
+        <parameter key="block_type" value="value_series"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_series_end"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="method" value="Z-transformation"/>
+        <parameter key="min" value="0.0"/>
+        <parameter key="max" value="1.0"/>
+        <parameter key="allow_negative_values" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="9.10.001" expanded="true" height="229" name="Multiply" width="90" x="782" y="85"/>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="KNN (Man)" width="90" x="983" y="1105">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="true" class="k_nn" compatibility="9.10.001" expanded="true" height="82" name="k-NN (Man, k=5)" width="90" x="179" y="34">
+            <parameter key="k" value="5"/>
+            <parameter key="weighted_vote" value="true"/>
+            <parameter key="measure_types" value="NumericalMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="ManhattanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
+          <operator activated="false" class="k_nn" compatibility="9.10.001" expanded="true" height="82" name="k-NN (Man, k=3)" width="90" x="179" y="136">
+            <parameter key="k" value="3"/>
+            <parameter key="weighted_vote" value="true"/>
+            <parameter key="measure_types" value="NumericalMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="ManhattanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
+          <operator activated="false" class="k_nn" compatibility="9.10.001" expanded="true" height="82" name="k-NN (Man, k=7)" width="90" x="313" y="136">
+            <parameter key="k" value="7"/>
+            <parameter key="weighted_vote" value="true"/>
+            <parameter key="measure_types" value="NumericalMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="ManhattanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
+          <connect from_port="training" to_op="k-NN (Man, k=5)" to_port="training set"/>
+          <connect from_op="k-NN (Man, k=5)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="137" y="277">Different hyperparameters have been tested. The one which performes best, remains in the model</description>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (8)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (KNN-Man)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (8)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (8)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance (KNN-Man)" to_port="labelled data"/>
+          <connect from_op="Performance (KNN-Man)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="Neural Net" width="90" x="983" y="952">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="false" class="neural_net" compatibility="9.10.001" expanded="true" height="82" name="Neural Net (3 layer)" width="90" x="112" y="136">
+            <list key="hidden_layers">
+              <parameter key="First " value="4"/>
+              <parameter key="Second" value="5"/>
+              <parameter key="Third" value="4"/>
+            </list>
+            <parameter key="training_cycles" value="2000"/>
+            <parameter key="learning_rate" value="0.01"/>
+            <parameter key="momentum" value="0.9"/>
+            <parameter key="decay" value="false"/>
+            <parameter key="shuffle" value="true"/>
+            <parameter key="normalize" value="true"/>
+            <parameter key="error_epsilon" value="9.0E-4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+          </operator>
+          <operator activated="true" class="neural_net" compatibility="9.10.001" expanded="true" height="82" name="Neural Net (2 layer, size 5)" width="90" x="246" y="34">
+            <list key="hidden_layers">
+              <parameter key="First " value="4"/>
+              <parameter key="Second" value="5"/>
+            </list>
+            <parameter key="training_cycles" value="2000"/>
+            <parameter key="learning_rate" value="0.01"/>
+            <parameter key="momentum" value="0.9"/>
+            <parameter key="decay" value="false"/>
+            <parameter key="shuffle" value="true"/>
+            <parameter key="normalize" value="true"/>
+            <parameter key="error_epsilon" value="9.0E-4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+          </operator>
+          <operator activated="false" class="neural_net" compatibility="9.10.001" expanded="true" height="82" name="Neural Net (1 layer)" width="90" x="313" y="136">
+            <list key="hidden_layers">
+              <parameter key="First " value="4"/>
+            </list>
+            <parameter key="training_cycles" value="2000"/>
+            <parameter key="learning_rate" value="0.01"/>
+            <parameter key="momentum" value="0.9"/>
+            <parameter key="decay" value="false"/>
+            <parameter key="shuffle" value="true"/>
+            <parameter key="normalize" value="true"/>
+            <parameter key="error_epsilon" value="9.0E-4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+          </operator>
+          <connect from_port="training" to_op="Neural Net (2 layer, size 5)" to_port="training set"/>
+          <connect from_op="Neural Net (2 layer, size 5)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="67" y="284">Different hyperparameters have been tested. The one which performes best, remains in the model</description>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (7)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (Neural Net)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (7)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (7)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance (Neural Net)" to_port="labelled data"/>
+          <connect from_op="Performance (Neural Net)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="Vote" width="90" x="983" y="799">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="true" class="vote" compatibility="9.10.001" expanded="true" height="68" name="Vote (2)" width="90" x="112" y="34">
+            <process expanded="true">
+              <operator activated="true" class="naive_bayes" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes (2)" width="90" x="246" y="289">
+                <parameter key="laplace_correction" value="true"/>
+              </operator>
+              <operator activated="true" class="neural_net" compatibility="9.10.001" expanded="true" height="82" name="Neural Net (2 layer, size 5) (2)" width="90" x="246" y="391">
+                <list key="hidden_layers">
+                  <parameter key="First " value="4"/>
+                  <parameter key="Second" value="5"/>
+                </list>
+                <parameter key="training_cycles" value="2000"/>
+                <parameter key="learning_rate" value="0.01"/>
+                <parameter key="momentum" value="0.9"/>
+                <parameter key="decay" value="false"/>
+                <parameter key="shuffle" value="true"/>
+                <parameter key="normalize" value="true"/>
+                <parameter key="error_epsilon" value="9.0E-4"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+              </operator>
+              <operator activated="true" class="k_nn" compatibility="9.10.001" expanded="true" height="82" name="k-NN (Man, k=5) (2)" width="90" x="246" y="187">
+                <parameter key="k" value="5"/>
+                <parameter key="weighted_vote" value="true"/>
+                <parameter key="measure_types" value="NumericalMeasures"/>
+                <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+                <parameter key="nominal_measure" value="DiceSimilarity"/>
+                <parameter key="numerical_measure" value="ManhattanDistance"/>
+                <parameter key="divergence" value="GeneralizedIDivergence"/>
+                <parameter key="kernel_type" value="radial"/>
+                <parameter key="kernel_gamma" value="1.0"/>
+                <parameter key="kernel_sigma1" value="1.0"/>
+                <parameter key="kernel_sigma2" value="0.0"/>
+                <parameter key="kernel_sigma3" value="2.0"/>
+                <parameter key="kernel_degree" value="3.0"/>
+                <parameter key="kernel_shift" value="1.0"/>
+                <parameter key="kernel_a" value="1.0"/>
+                <parameter key="kernel_b" value="0.0"/>
+              </operator>
+              <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree (gain ratio) (2)" width="90" x="246" y="34">
+                <parameter key="criterion" value="gain_ratio"/>
+                <parameter key="maximal_depth" value="10"/>
+                <parameter key="apply_pruning" value="true"/>
+                <parameter key="confidence" value="0.1"/>
+                <parameter key="apply_prepruning" value="true"/>
+                <parameter key="minimal_gain" value="0.01"/>
+                <parameter key="minimal_leaf_size" value="3"/>
+                <parameter key="minimal_size_for_split" value="10"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+              </operator>
+              <connect from_port="training set 1" to_op="Decision Tree (gain ratio) (2)" to_port="training set"/>
+              <connect from_port="training set 2" to_op="k-NN (Man, k=5) (2)" to_port="training set"/>
+              <connect from_port="training set 3" to_op="Naive Bayes (2)" to_port="training set"/>
+              <connect from_port="training set 4" to_op="Neural Net (2 layer, size 5) (2)" to_port="training set"/>
+              <connect from_op="Naive Bayes (2)" from_port="model" to_port="base model 3"/>
+              <connect from_op="Neural Net (2 layer, size 5) (2)" from_port="model" to_port="base model 4"/>
+              <connect from_op="k-NN (Man, k=5) (2)" from_port="model" to_port="base model 2"/>
+              <connect from_op="Decision Tree (gain ratio) (2)" from_port="model" to_port="base model 1"/>
+              <portSpacing port="source_training set 1" spacing="0"/>
+              <portSpacing port="source_training set 2" spacing="0"/>
+              <portSpacing port="source_training set 3" spacing="0"/>
+              <portSpacing port="source_training set 4" spacing="0"/>
+              <portSpacing port="source_training set 5" spacing="0"/>
+              <portSpacing port="sink_base model 1" spacing="0"/>
+              <portSpacing port="sink_base model 2" spacing="0"/>
+              <portSpacing port="sink_base model 3" spacing="0"/>
+              <portSpacing port="sink_base model 4" spacing="0"/>
+              <portSpacing port="sink_base model 5" spacing="0"/>
+              <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="252" y="533">Models with the best performance (hyperparameters) are added to the vote operator</description>
+            </process>
+          </operator>
+          <connect from_port="training" to_op="Vote (2)" to_port="training set"/>
+          <connect from_op="Vote (2)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (6)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (Vote)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (6)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (6)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance (Vote)" to_port="labelled data"/>
+          <connect from_op="Performance (Vote)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="Naive" width="90" x="983" y="646">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="true" class="naive_bayes" compatibility="9.10.001" expanded="true" height="82" name="Naive Bayes" width="90" x="179" y="34">
+            <parameter key="laplace_correction" value="true"/>
+          </operator>
+          <connect from_port="training" to_op="Naive Bayes" to_port="training set"/>
+          <connect from_op="Naive Bayes" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (5)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (Naive)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (5)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (5)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (5)" from_port="labelled data" to_op="Performance (Naive)" to_port="labelled data"/>
+          <connect from_op="Performance (Naive)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="KNN (Eucl)" width="90" x="983" y="493">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="false" class="k_nn" compatibility="9.10.001" expanded="true" height="82" name="k-NN (Eucl, k=5)" width="90" x="313" y="187">
+            <parameter key="k" value="5"/>
+            <parameter key="weighted_vote" value="true"/>
+            <parameter key="measure_types" value="NumericalMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="EuclideanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
+          <operator activated="false" class="k_nn" compatibility="9.10.001" expanded="true" height="82" name="k-NN (Eucl, k=3)" width="90" x="179" y="187">
+            <parameter key="k" value="3"/>
+            <parameter key="weighted_vote" value="true"/>
+            <parameter key="measure_types" value="NumericalMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="EuclideanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
+          <operator activated="true" class="k_nn" compatibility="9.10.001" expanded="true" height="82" name="k-NN (Eucl, k=7)" width="90" x="313" y="34">
+            <parameter key="k" value="7"/>
+            <parameter key="weighted_vote" value="true"/>
+            <parameter key="measure_types" value="NumericalMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="DiceSimilarity"/>
+            <parameter key="numerical_measure" value="EuclideanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
+          <connect from_port="training" to_op="k-NN (Eucl, k=7)" to_port="training set"/>
+          <connect from_op="k-NN (Eucl, k=7)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="207" y="363">Different hyperparameters have been tested. The one which performes best, remains in the model</description>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (4)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (KNN-Eucl)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (4)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (4)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance (KNN-Eucl)" to_port="labelled data"/>
+          <connect from_op="Performance (KNN-Eucl)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="Gradient Booting Trees" width="90" x="983" y="340">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="true" class="h2o:gradient_boosted_trees" compatibility="9.10.001" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="179" y="34">
+            <parameter key="number_of_trees" value="50"/>
+            <parameter key="reproducible" value="false"/>
+            <parameter key="maximum_number_of_threads" value="4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="min_rows" value="10.0"/>
+            <parameter key="min_split_improvement" value="1.0E-5"/>
+            <parameter key="number_of_bins" value="20"/>
+            <parameter key="learning_rate" value="0.025"/>
+            <parameter key="sample_rate" value="1.0"/>
+            <parameter key="distribution" value="AUTO"/>
+            <parameter key="early_stopping" value="false"/>
+            <parameter key="stopping_rounds" value="1"/>
+            <parameter key="stopping_metric" value="AUTO"/>
+            <parameter key="stopping_tolerance" value="0.001"/>
+            <list key="monotone_constraints"/>
+            <parameter key="max_runtime_seconds" value="0"/>
+            <list key="expert_parameters"/>
+          </operator>
+          <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="9.10.001" expanded="true" height="103" name="Gradient Boosted Trees (diff. hyp.)" width="90" x="179" y="136">
+            <parameter key="number_of_trees" value="25"/>
+            <parameter key="reproducible" value="false"/>
+            <parameter key="maximum_number_of_threads" value="4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="maximal_depth" value="5"/>
+            <parameter key="min_rows" value="10.0"/>
+            <parameter key="min_split_improvement" value="0.001"/>
+            <parameter key="number_of_bins" value="20"/>
+            <parameter key="learning_rate" value="0.8"/>
+            <parameter key="sample_rate" value="1.0"/>
+            <parameter key="distribution" value="AUTO"/>
+            <parameter key="early_stopping" value="false"/>
+            <parameter key="stopping_rounds" value="1"/>
+            <parameter key="stopping_metric" value="AUTO"/>
+            <parameter key="stopping_tolerance" value="0.001"/>
+            <list key="monotone_constraints"/>
+            <parameter key="max_runtime_seconds" value="0"/>
+            <list key="expert_parameters"/>
+          </operator>
+          <operator activated="false" class="h2o:gradient_boosted_trees" compatibility="9.10.001" expanded="true" height="103" name="Gradient Boosted Trees (3)" width="90" x="179" y="289">
+            <parameter key="number_of_trees" value="50"/>
+            <parameter key="reproducible" value="false"/>
+            <parameter key="maximum_number_of_threads" value="4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="maximal_depth" value="5"/>
+            <parameter key="min_rows" value="10.0"/>
+            <parameter key="min_split_improvement" value="0.05"/>
+            <parameter key="number_of_bins" value="10"/>
+            <parameter key="learning_rate" value="0.1"/>
+            <parameter key="sample_rate" value="1.0"/>
+            <parameter key="distribution" value="AUTO"/>
+            <parameter key="early_stopping" value="false"/>
+            <parameter key="stopping_rounds" value="1"/>
+            <parameter key="stopping_metric" value="AUTO"/>
+            <parameter key="stopping_tolerance" value="0.001"/>
+            <list key="monotone_constraints"/>
+            <parameter key="max_runtime_seconds" value="0"/>
+            <list key="expert_parameters"/>
+          </operator>
+          <connect from_port="training" to_op="Gradient Boosted Trees" to_port="training set"/>
+          <connect from_op="Gradient Boosted Trees" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="121" resized="false" width="180" x="148" y="426">Similar performance for these different hyperparameters (goal is to optimize precision, all have 100% precision for our true label)</description>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (3)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (Gradient Boosting Trees)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (3)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (3)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (3)" from_port="labelled data" to_op="Performance (Gradient Boosting Trees)" to_port="labelled data"/>
+          <connect from_op="Performance (Gradient Boosting Trees)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="Random Forest" width="90" x="983" y="187">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="true" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest (information gain)" width="90" x="179" y="34">
+            <parameter key="number_of_trees" value="100"/>
+            <parameter key="criterion" value="information_gain"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.2"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.02"/>
+            <parameter key="minimal_leaf_size" value="3"/>
+            <parameter key="minimal_size_for_split" value="10"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <operator activated="false" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest (gini-index)" width="90" x="179" y="187">
+            <parameter key="number_of_trees" value="100"/>
+            <parameter key="criterion" value="gini_index"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.2"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.02"/>
+            <parameter key="minimal_leaf_size" value="3"/>
+            <parameter key="minimal_size_for_split" value="10"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <operator activated="false" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest (accuracy)" width="90" x="380" y="187">
+            <parameter key="number_of_trees" value="100"/>
+            <parameter key="criterion" value="accuracy"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.2"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.02"/>
+            <parameter key="minimal_leaf_size" value="3"/>
+            <parameter key="minimal_size_for_split" value="10"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <operator activated="false" class="concurrency:parallel_random_forest" compatibility="9.10.001" expanded="true" height="103" name="Random Forest (information gain, diff hyp)" width="90" x="45" y="187">
+            <parameter key="number_of_trees" value="50"/>
+            <parameter key="criterion" value="information_gain"/>
+            <parameter key="maximal_depth" value="5"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.2"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.2"/>
+            <parameter key="minimal_leaf_size" value="3"/>
+            <parameter key="minimal_size_for_split" value="10"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <connect from_port="training" to_op="Random Forest (information gain)" to_port="training set"/>
+          <connect from_op="Random Forest (information gain)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="139" resized="false" width="180" x="124" y="340">Different hyperparameters have been tested. The one which performes best, remains in the model.&lt;br/&gt;In this case, gini index and information gain have the same performance (100%)</description>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model (2)" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (Random Forest)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model (2)" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model (2)" to_port="unlabelled data"/>
+          <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance (Random Forest)" to_port="labelled data"/>
+          <connect from_op="Performance (Random Forest)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="split_validation" compatibility="9.10.001" expanded="true" height="124" name="Decision Tree (2)" width="90" x="983" y="34">
+        <parameter key="create_complete_model" value="false"/>
+        <parameter key="split" value="relative"/>
+        <parameter key="split_ratio" value="0.8"/>
+        <parameter key="training_set_size" value="100"/>
+        <parameter key="test_set_size" value="-1"/>
+        <parameter key="sampling_type" value="stratified sampling"/>
+        <parameter key="use_local_random_seed" value="true"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <process expanded="true">
+          <operator activated="false" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree (gini index)" width="90" x="179" y="238">
+            <parameter key="criterion" value="gini_index"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="3"/>
+            <parameter key="minimal_size_for_split" value="10"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+          </operator>
+          <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree (gain ratio)" width="90" x="313" y="34">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="3"/>
+            <parameter key="minimal_size_for_split" value="10"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+          </operator>
+          <operator activated="false" class="concurrency:parallel_decision_tree" compatibility="9.10.001" expanded="true" height="103" name="Decision Tree ( gini index dif. hyperparameter)" width="90" x="179" y="340">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="5"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.5"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.2"/>
+            <parameter key="minimal_leaf_size" value="3"/>
+            <parameter key="minimal_size_for_split" value="10"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+          </operator>
+          <connect from_port="training" to_op="Decision Tree (gain ratio)" to_port="training set"/>
+          <connect from_op="Decision Tree (gain ratio)" from_port="model" to_port="model"/>
+          <portSpacing port="source_training" spacing="0"/>
+          <portSpacing port="sink_model" spacing="0"/>
+          <portSpacing port="sink_through 1" spacing="0"/>
+          <description align="center" color="yellow" colored="false" height="105" resized="false" width="180" x="129" y="485">Different hyperparameters have been tested. The one which performes best, remains in the model</description>
+        </process>
+        <process expanded="true">
+          <operator activated="true" class="apply_model" compatibility="9.10.001" expanded="true" height="82" name="Apply Model" width="90" x="179" y="34">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.10.001" expanded="true" height="82" name="Performance (Decision Tree)" width="90" x="380" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="false"/>
+            <parameter key="kappa" value="false"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="model" to_op="Apply Model" to_port="model"/>
+          <connect from_port="test set" to_op="Apply Model" to_port="unlabelled data"/>
+          <connect from_op="Apply Model" from_port="labelled data" to_op="Performance (Decision Tree)" to_port="labelled data"/>
+          <connect from_op="Performance (Decision Tree)" from_port="performance" to_port="averagable 1"/>
+          <portSpacing port="source_model" spacing="0"/>
+          <portSpacing port="source_test set" spacing="0"/>
+          <portSpacing port="source_through 1" spacing="0"/>
+          <portSpacing port="sink_averagable 1" spacing="0"/>
+          <portSpacing port="sink_averagable 2" spacing="0"/>
+        </process>
+      </operator>
+      <connect from_op="Retrieve Joined Data" from_port="output" to_op="Filter for missing values" to_port="example set input"/>
+      <connect from_op="Filter for missing values" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Normalize" to_port="example set input"/>
+      <connect from_op="Normalize" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Decision Tree (2)" to_port="training"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Random Forest" to_port="training"/>
+      <connect from_op="Multiply" from_port="output 3" to_op="Gradient Booting Trees" to_port="training"/>
+      <connect from_op="Multiply" from_port="output 4" to_op="KNN (Eucl)" to_port="training"/>
+      <connect from_op="Multiply" from_port="output 5" to_op="Naive" to_port="training"/>
+      <connect from_op="Multiply" from_port="output 6" to_op="Vote" to_port="training"/>
+      <connect from_op="Multiply" from_port="output 7" to_op="Neural Net" to_port="training"/>
+      <connect from_op="Multiply" from_port="output 8" to_op="KNN (Man)" to_port="training"/>
+      <connect from_op="KNN (Man)" from_port="model" to_port="result 15"/>
+      <connect from_op="KNN (Man)" from_port="averagable 1" to_port="result 16"/>
+      <connect from_op="Neural Net" from_port="model" to_port="result 13"/>
+      <connect from_op="Neural Net" from_port="averagable 1" to_port="result 14"/>
+      <connect from_op="Vote" from_port="model" to_port="result 11"/>
+      <connect from_op="Vote" from_port="averagable 1" to_port="result 12"/>
+      <connect from_op="Naive" from_port="model" to_port="result 9"/>
+      <connect from_op="Naive" from_port="averagable 1" to_port="result 10"/>
+      <connect from_op="KNN (Eucl)" from_port="model" to_port="result 7"/>
+      <connect from_op="KNN (Eucl)" from_port="averagable 1" to_port="result 8"/>
+      <connect from_op="Gradient Booting Trees" from_port="model" to_port="result 5"/>
+      <connect from_op="Gradient Booting Trees" from_port="averagable 1" to_port="result 6"/>
+      <connect from_op="Random Forest" from_port="model" to_port="result 3"/>
+      <connect from_op="Random Forest" from_port="averagable 1" to_port="result 4"/>
+      <connect from_op="Decision Tree (2)" from_port="model" to_port="result 1"/>
+      <connect from_op="Decision Tree (2)" from_port="averagable 1" to_port="result 2"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
+      <portSpacing port="sink_result 6" spacing="0"/>
+      <portSpacing port="sink_result 7" spacing="0"/>
+      <portSpacing port="sink_result 8" spacing="0"/>
+      <portSpacing port="sink_result 9" spacing="0"/>
+      <portSpacing port="sink_result 10" spacing="0"/>
+      <portSpacing port="sink_result 11" spacing="0"/>
+      <portSpacing port="sink_result 12" spacing="0"/>
+      <portSpacing port="sink_result 13" spacing="0"/>
+      <portSpacing port="sink_result 14" spacing="0"/>
+      <portSpacing port="sink_result 15" spacing="0"/>
+      <portSpacing port="sink_result 16" spacing="0"/>
+      <portSpacing port="sink_result 17" spacing="0"/>
+      <description align="left" color="purple" colored="true" height="102" resized="true" width="170" x="141" y="200">No values are missing, nevertheless the filter for missing values included, in case if any input data is changing</description>
+      <description align="left" color="purple" colored="true" height="52" resized="true" width="154" x="349" y="178">Interesting player is set as label</description>
+      <description align="left" color="purple" colored="true" height="66" resized="true" width="171" x="540" y="206">Data normalization is necessary for some of the used models</description>
+    </process>
+  </operator>
+</process>
