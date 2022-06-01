@@ -17,7 +17,8 @@ Artem (2020): CS:GO match history. Online available at: https://www.kaggle.com/a
 
 <br />
 
-Mateus Dauernheimer Machado (2020): CS:GO Professional Matches. Online available at: https://www.kaggle.com/mateusdmachado/csgo-professional-matches(last access on 13th March 2022)
+Mateus Dauernheimer Machado (2020): CS:GO Professional Matches. Online available at: https://www.kaggle.com/mateusdmachado/csgo-professional-matches
+(last access on 13th March 2022)
 
 <br />
 
@@ -49,7 +50,7 @@ Following algorithms where used with labels from Clustering as well as manually 
 
 ## Result
 
-Clustering usually led to two clusters of players. Thus we generated three labels by our own. For Classification - clustered as well as own labels - the precision score was chosen as performance measure. This is because we want to assure that players labeled as "high potential" actually are "high potential". Precision usually was above 90 %, except for Neural Networks (70%).
+Clustering usually led to two clusters of players. Thus we generated three labels by our own. For Classification - clustered as well as own labels - the precision score was chosen as performance measure. This is because we want to assure that players labeled as "high potential" actually are "high potential". Precision usually was above 90%, except for Neural Networks (70%).
 
 ## Important Note
 
